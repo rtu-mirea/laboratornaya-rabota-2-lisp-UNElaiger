@@ -14,13 +14,13 @@
     )
 )
 ;Функция сжатия 
-(defun compress (List)
+(defun compress (LST)
     (map 'list #'unmapf
         (cdr
             (reverse
                 (reduce
                     #'comprsf
-                    (map 'list #'mapf List)
+                    (map 'list #'mapf LST)
                     :initial-value (list(list 1 -1))
                  )
              )
@@ -29,8 +29,8 @@
 )
 
 ;Функция расжатия 
-(defun decompress(List)
-  (loop for element in List
+(defun decompress(LST)
+  (loop for element in LST
     if (integerp element) collect element
     if (listp element) nconc (make-list (car element) 
   :initial-element (cadr element))))
